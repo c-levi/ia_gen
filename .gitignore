@@ -1,2 +1,4 @@
 /.env_ia_gen
 /.mypy_cache
+/llm_rag_chatbot
+/mini_rag/tests
