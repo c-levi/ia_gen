@@ -14,4 +14,4 @@ with open("chunks.json", "r", encoding="utf-8") as f:
 def search(query, k=3):
     q_vec = model.encode([query])
     D, I = index.search(np.array(q_vec), k)
-    return [chunks[i] for i in I[0]]
+    return [chunks[i]["text"] for i in I[0]]

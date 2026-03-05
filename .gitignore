@@ -2,3 +2,4 @@
 /.mypy_cache
 /llm_rag_chatbot
 /mini_rag/tests
+/mini_rag/__pycache__
