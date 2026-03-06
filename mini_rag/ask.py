@@ -1,7 +1,11 @@
 from rag_pipeline import answer_question
+from graph import graph
+
 
 query = "Comment remplir mon CRA?"
 
-answer = answer_question(query)
+result = graph.invoke({
+    "question": query
+})
 
-print(answer)
+print(result["answer"])

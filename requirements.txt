@@ -1,6 +1,7 @@
-pip install sentence_transformers
-pip install faiss-cpu
-pip install langchain
-pip install langchain-text-splitters
-pip install streamlit
-pip install ollama
+sentence_transformers
+faiss-cpu
+langchain
+langchain-text-splitters
+streamlit
+ollama
+langgraph
