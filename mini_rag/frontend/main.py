@@ -4,7 +4,6 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 import streamlit as st
-# import requests
 from backend.ask import ask_question
 
 
@@ -25,23 +24,29 @@ with st.sidebar:
 
 st.title("Chatbot 5D")
 
-user_input = st.text_input("Pose ta question")
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-if st.button("Envoyer") and user_input:
-    # response = requests.post(
-    #     "http://localhost:8000/ask",
-    #     json={"question": user_input}
-    # )
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        if "output" in message.keys():
+            st.markdown(message["output"])
 
-    # if response.status_code == 200:
-    #     answer = response.json()["answer"]
-    #     st.write("### Réponse")
-    #     st.write(answer)
-    # else:
-    #     st.error("Erreur API")
+if user_input := st.chat_input("Pose ta question"):
+    st.chat_message("user").markdown(user_input)
 
-    with st.spinner("Recherche en cours..."):
+    st.session_state.messages.append({"role": "user", "output": user_input})
+
+    data = {"text": user_input}
+
+    with st.spinner("Searching for an answer..."):
         answer = ask_question(user_input)
 
-    st.write("### Réponse")
-    st.write(answer)
+    st.chat_message("assistant").markdown(answer)
+
+    st.session_state.messages.append(
+        {
+            "role": "assistant",
+            "output": answer
+        }
+    )
