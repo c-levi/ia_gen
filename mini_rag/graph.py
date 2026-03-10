@@ -12,6 +12,7 @@ class GraphState(TypedDict):
     chunks: List[str]
     context: str
     answer: str
+    history: List[str]
 
 
 def retrieve_node(state):
@@ -45,7 +46,12 @@ def llm_call(state):
     start = time.time()
     question = state["question"]
     context = state["context"]
+    history = state.get("history", [])
+    history_text = "\n".join(history)
     prompt = f"""
+Historique de conversation:
+{history_text}
+
 Réponds à la question en utilisant le contexte.
 
 Contexte:
@@ -58,8 +64,14 @@ Question:
     answer = ask_ollama(prompt)
 
     print("llm:", time.time() - start)
+
+    # Append to history
+    history.append(f"User: {question}")
+    history.append(f"Assistant: {answer}")
+
     return {
-        "answer": answer
+        "answer": answer,
+        "history": history
     }
 
 

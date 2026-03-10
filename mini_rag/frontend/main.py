@@ -40,7 +40,11 @@ if user_input := st.chat_input("Pose ta question"):
     data = {"text": user_input}
 
     with st.spinner("Searching for an answer..."):
-        answer = ask_question(user_input)
+        history = [
+            f"{m['role']}: {m['output']}"
+            for m in st.session_state.messages
+        ]
+        answer = ask_question(user_input, history)
 
     st.chat_message("assistant").markdown(answer)
 
