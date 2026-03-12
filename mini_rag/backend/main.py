@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from schemas import QuestionRequest, AnswerResponse
-from graph import graph
+from backend.schemas import QuestionRequest, AnswerResponse
+from backend.graph import graph
 
 app = FastAPI()
 

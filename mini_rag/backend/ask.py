@@ -1,5 +1,5 @@
 # from rag_pipeline import answer_question
-from graph import graph
+from backend.graph import graph
 
 
 def ask_question(query: str, history):

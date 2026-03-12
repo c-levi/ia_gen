@@ -8,9 +8,9 @@ from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
-DOCS_PATH = "docs"
-INDEX_PATH = "faiss_index.index"
-CHUNKS_PATH = "chunks.json"
+DOCS_PATH = "data"
+INDEX_PATH = "embeddings/faiss_index.index"
+CHUNKS_PATH = "embeddings/chunks.json"
 
 
 model = SentenceTransformer("all-MiniLM-L6-v2")

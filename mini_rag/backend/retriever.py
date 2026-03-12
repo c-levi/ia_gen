@@ -6,9 +6,9 @@ from sentence_transformers import SentenceTransformer
 
 # Charger embeddings et index
 model = SentenceTransformer("all-MiniLM-L6-v2")
-index = faiss.read_index("faiss_index.index")
+index = faiss.read_index("embeddings/faiss_index.index")
 
-with open("chunks.json", "r", encoding="utf-8") as f:
+with open("embeddings/chunks.json", "r", encoding="utf-8") as f:
     chunks = json.load(f)
 
 def search(query, k=3):

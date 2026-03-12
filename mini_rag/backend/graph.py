@@ -1,7 +1,7 @@
 from typing import TypedDict, List
-from retriever import search
-from rag_pipeline import rerank_chunks
-from llm import ask_ollama
+from backend.retriever import search
+from backend.rag_pipeline import rerank_chunks
+from backend.llm import ask_ollama
 from langgraph.graph import StateGraph, START, END
 import time
 
@@ -105,6 +105,7 @@ def llm_call(state):
     context = state["compressed_context"]
     history = state.get("history", [])
     history_text = "\n".join(history)
+
     prompt = f"""
 Historique de conversation:
 {history_text}
