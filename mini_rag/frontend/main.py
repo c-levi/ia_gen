@@ -37,12 +37,10 @@ if user_input := st.chat_input("Pose ta question"):
 
     st.session_state.messages.append({"role": "user", "output": user_input})
 
-    data = {"text": user_input}
-
     with st.spinner("Searching for an answer..."):
         history = [
             f"{m['role']}: {m['output']}"
-            for m in st.session_state.messages
+            for m in st.session_state.messages[-10:]
         ]
         answer = ask_question(user_input, history)
 
@@ -54,3 +52,7 @@ if user_input := st.chat_input("Pose ta question"):
             "output": answer
         }
     )
+
+# if st.button("Reset conversation"):
+#     st.session_state.messages = []
+#     st.rerun()
